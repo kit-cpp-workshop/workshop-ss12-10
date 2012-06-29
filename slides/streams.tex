@@ -269,7 +269,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{\texttt{basic\_istream} formatted input}
+\begin{frame}[fragile]{\texttt{basic\_istream}: formatted input}
 	\texttt{operator<<} standardmäßig schon definiert für:
 	\begin{itemize}
 		\item built-in data types (\texttt{short}, \texttt{int}, \texttt{bool}, \texttt{float} usw.)
@@ -340,5 +340,31 @@
 
 \subsection{konkrete Stream-Klassen}
 
+\begin{frame}{\texttt{fstream}}
+\end{frame}
+
 
 \subsection{Standard-Streams}
+
+\begin{frame}{Wohin gehen diese?}
+	\begin{itemize}
+		\item implementation-defined!
+		\item meist: auf eine Konsole
+		\item möglich: stream redirection / capture, z.B. Umleitung in Datei \texttt{myprog > myLog.log}
+		\item C++ weiß noch nicht mal was von einer Tastatur!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\texttt{cin} und Konsorten}
+	\begin{tabular}{cc}
+		\textbf{Typ}	&	\textbf{Name}	& \textbf{Beschreibung}	\\
+		\texttt{extern istream&}	&	\texttt{cin}	&	standard character input stream	\\
+		\texttt{extern ostream&}	&	\texttt{cout}	&	standard character output stream	\\
+		\texttt{extern ostream&}	&	\texttt{cerr}	&	standard character error stream	\\
+		\texttt{extern ostream&}	&	\texttt{clog}	&	standard character log stream	\\
+	\end{tabular}
+	
+	\vspace{2em}
+	
+	Das ganze gibt es noch als wide-character-Variante (anderes, weiteres Thema).
+\end{frame}

@@ -18,12 +18,12 @@
 
 \subsection{STL-Streams}
 
-\begin{frame}[fragile]{Grundlegendes}
+\begin{frame}{Grundlegendes}
 	\begin{itemize}
 		\item STL-Streams sind hauptsächlich character-Streams
 		\item Die eigentliche Übertragungs-Funktionalität steckt im Puffer!
 		\item dienen dem Vereinfachten Zugriff auf Puffer
-		\item Zustands-behaftet z.B. für Eingabe mit fester Breite (\verb|setw|)
+		\item Zustands-behaftet z.B. für Eingabe mit fester Breite (\texttt{setw})
 	\end{itemize}
 \end{frame}
 
@@ -232,7 +232,7 @@
 	die Manipulatoren
 	\begin{itemize}
 		\item beschreiben Funktionen (sind Funktionen $\implies$ function ptrs)
-		\item werden mit \verb|operator<<| bzw. \verb|operator>>| an den Stream \enquote{übergeben}
+		\item werden mit \texttt{operator<<} bzw. \texttt{operator>>} an den Stream \enquote{übergeben}
 		\item der Stream ruft die Funktion auf und übergibt sich selbst als Parameter
 		\item die Manipulator-Funktion arbeitet auf dem Stream
 	\end{itemize}
@@ -287,7 +287,7 @@
 	\begin{block}{Wichtig für formatted input}
 		\texttt{operator>>} hört auf zu Lesen bei space-characters.
 		space-characters sind locale-dependent! Zumeist aber mindestens:\\
-		\verb|` '|, \verb|`\t'|, \verb|`\n'|, \verb|`v'|, \verb|`f'|, \verb|`\r'|
+		\verb|` '|, \verb|`\t'|, \verb|`\n'|, \verb|`\v'|, \verb|`\f'|, \verb|`\r'|
 	\end{block}
 \end{frame}
 

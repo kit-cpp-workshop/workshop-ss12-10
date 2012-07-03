@@ -342,13 +342,17 @@
 
 \begin{frame}{\texttt{fstream}}
 	Zusätzliche member functions:
+	\vspace{1em}
 	
 	\footnotesize
 	
 	\begin{tabular}{ll}
-		\textbf{Signatur}	&	Beschreibung	\\
-		\texttt{void open(const char*, ios\_base::openmode)}	&	öffnet eine Datei	\\
-		\texttt{void open(string const\& s, ios\_base::openmode m)}	&	same as above	\\
+		\textbf{Signatur}	&	\textbf{Beschreibung}	\\
+		\hline
+		\texttt{void open(const char*,}\\
+			\hspace{2em} \texttt{ios\_base::openmode)}	&	öffnet eine Datei	\\
+		\texttt{void open(string const\& s,}\\
+			\hspace{2em} \texttt{ios\_base::openmode m)}	&	same as above	\\
 		\texttt{void close()}	&	flushed den Puffer und schließt die Datei	\\
 		\texttt{bool is\_open() const}	&	\texttt{true} genau dann, wenn die Datei offen ist	\\
 	\end{tabular}
@@ -356,25 +360,27 @@
 	\pause
 	\vspace{2em}
 	
-	Varianten:	\\
+	Varianten des file-based streams:	\\
 	\texttt{basic\_ifstream}, \texttt{basic\_ofstream}, \texttt{basic\_fstream}
 \end{frame}
 
 \begin{frame}{\texttt{stringstream}}
 	Zusätzliche member functions:
+	\vspace{1em}
 	
 	\footnotesize
 	
 	\begin{tabular}{ll}
-		\textbf{Signatur}	&	Beschreibung	\\
-		\texttt{basic\_string str() const}	&	gibt einen string mit dem Inhalt des Streams zurück	\\
-		\texttt{void str(basic\_string\&)}	&	ersetzt den Inhalt des Streams durch eine Kopie des Inhalt des Strings	\\
+		\textbf{Signatur}	&	\textbf{Beschreibung}	\\
+		\hline
+		\texttt{basic\_string \emph{str}() const}	&	\parbox{25em}{gibt einen string mit einer Kopie\\ des Inhalts des Streams zurück}	\\
+		\texttt{void str(basic\_string\&)}	&	\parbox{25em}{ersetzt den Inhalt des Streams\\ durch eine Kopie des Inhalt des Strings}	\\
 	\end{tabular}
 	
 	\pause
 	\vspace{2em}
 	
-	Varianten:	\\
+	Varianten des string-based streams:	\\
 	\texttt{basic\_istringstream}, \texttt{basic\_ostringstream}, \texttt{basic\_stringstream}
 \end{frame}
 
@@ -382,14 +388,22 @@
 \subsection{Aliase}
 
 \begin{frame}{Aliase für streams}
+	\texttt{using alias = name < T\_Char, T\_CharTraits >;}
+	
+	\vspace{0.5em}
+	
 	\texttt{
 	\begin{tabular}{llll}
-		basic\_ios	&	char	&	char\_traits < char >	&	ios	\\
-		basi\_ios	&	wchar\_t	&	char\_traits < wchar\_t >	&	wios	\\
-		basic\_istream	&	char	&	char\_traits < char >	&	istream	\\
-		basic\_fstream	&	wchar\_t	&	char\_traits < wchar\_t >	&	wfstream	\\
+		\textbf{alias}	&	\textbf{name}	&	\texttt{T\_Char}	&	\texttt{T\_CharTraits}	\\
+		\hline
+		ios	&	basic\_ios	&	char	&	char\_traits < char >	\\
+		wios	&	basic\_ios	&	wchar\_t	&	char\_traits < wchar\_t >	\\
+		istream	&	basic\_istream	&	char	&	char\_traits < char >	\\
+		wfstream	&	basic\_fstream	&	wchar\_t	&	char\_traits < wchar\_t >	\\
 	\end{tabular}
 	}
+	
+	\vspace{1em}
 	
 	usw.
 \end{frame}

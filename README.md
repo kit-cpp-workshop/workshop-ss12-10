@@ -2,7 +2,10 @@
 
 ## Inhalt
 
-Kurze Einführung in die Thematik
+ * Streams
+ * Exceptions
+ * std::algorithms
+ * Hashtables
 
 ### Folien zum Vortrag
 

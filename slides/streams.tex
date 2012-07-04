@@ -342,10 +342,17 @@
 \end{frame}
 
 \begin{frame}[t]{formatted input: lesen in Schleife (1)}
-	\onslide*<+> { \lstinputlisting[basicstyle=\tiny, linerange=begin-bad_idea2]{cpp-code/formatted-input-read.cpp} }
-	\onslide*<+> { \lstinputlisting[basicstyle=\tiny, linerange=begin-good_idea1]{cpp-code/formatted-input-read.cpp} }
-	\onslide*<+> { \lstinputlisting[basicstyle=\tiny, linerange=begin-good_idea2]{cpp-code/formatted-input-read.cpp} }
-	\onslide<+> { \lstinputlisting[basicstyle=\tiny, linerange=begin-read_line]{cpp-code/formatted-input-read.cpp} }
+	\begin{columns}[t]
+		\hspace{2em}
+		\column{0.5\textwidth}
+			\onslide*<+> { \lstinputlisting[linerange=begin-bad_idea2]{cpp-code/formatted-input-read.cpp} }
+			\onslide<+-> { \lstinputlisting[linerange=begin-good_idea1]{cpp-code/formatted-input-read.cpp} }
+			
+		\column{0.5\textwidth}
+			\vspace{2.25em}
+			\onslide*<+> { \lstinputlisting[linerange=good_idea1-good_idea2]{cpp-code/formatted-input-read.cpp} }
+			\onslide<+-> { \lstinputlisting[linerange=good_idea1-read_line]{cpp-code/formatted-input-read.cpp} }
+	\end{columns}
 \end{frame}
 
 \begin{frame}[t]{formatted input: lesen in Schleife (2)}

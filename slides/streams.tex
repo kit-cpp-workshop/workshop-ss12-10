@@ -384,11 +384,16 @@
 	\begin{tabular}{ll}
 		\textbf{Signatur}	&	\textbf{Beschreibung}	\\
 		\hline
+		
 		\texttt{void open(const char*,}\\
-			\hspace{2em} \texttt{ios\_base::openmode)}	&	öffnet eine Datei	\\
+			\hspace{2em} \texttt{ios\_base::openmode)}	\vspace{0.5em}	&	öffnet eine Datei	\\
+			
 		\texttt{void open(string const\& s,}\\
-			\hspace{2em} \texttt{ios\_base::openmode m)}	&	same as above	\\
+			\hspace{2em} \texttt{ios\_base::openmode m)}	\vspace{0.5em}	&	öffnet eine Datei	\\
+			
 		\texttt{void close()}	&	flushed den Puffer und schließt die Datei	\\
+		
+		\vspace{0.5em}
 		\texttt{bool is\_open() const}	&	\texttt{true} genau dann, wenn die Datei offen ist	\\
 	\end{tabular}
 	
@@ -407,8 +412,8 @@
 	\begin{tabular}{ll}
 		\textbf{Signatur}	&	\textbf{Beschreibung}	\\
 		\hline
-		\texttt{basic\_string \emph{str}() const}	&	\parbox{25em}{gibt einen string mit einer Kopie\\ des Inhalts des Streams zurück}	\\
-		\texttt{void str(basic\_string\&)}	&	\parbox{25em}{ersetzt den Inhalt des Streams\\ durch eine Kopie des Inhalt des Strings}	\\
+		\texttt{basic\_string \emph{str}() const}	&	\parbox{20em}{\vspace{0.5em} gibt einen string mit einer Kopie\\ des Inhalts des Streams zurück}	\vspace{1em} \\
+		\texttt{void \emph{str}(basic\_string\&)}	&	\parbox{20em}{ersetzt den Inhalt des Streams\\ durch eine Kopie des Inhalt des Strings}	\\
 	\end{tabular}
 	
 	\vspace{2em}

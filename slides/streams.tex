@@ -341,46 +341,20 @@
 	\end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{formatted input: lesen in Schleife}
-	\begin{block}{Schlechte Idee}
-		\begin{lstlisting}
-			while(cin) {
-				int i; int j;
-				cin >> i >> j;
-				// use i and j
-			}
-		\end{lstlisting}
+\begin{frame}[t]{formatted input: lesen in Schleife (1)}
+	\onslide*<+> { \lstinputlisting[basicstyle=\tiny, linerange=begin-bad_idea2]{cpp-code/formatted-input-read.cpp} }
+	\onslide*<+> { \lstinputlisting[basicstyle=\tiny, linerange=begin-good_idea1]{cpp-code/formatted-input-read.cpp} }
+	\onslide*<+> { \lstinputlisting[basicstyle=\tiny, linerange=begin-good_idea2]{cpp-code/formatted-input-read.cpp} }
+	\onslide*<+> { \lstinputlisting[basicstyle=\tiny, linerange=begin-read_line]{cpp-code/formatted-input-read.cpp} }
+\end{frame}
+
+\begin{frame}[t]{formatted input: lesen in Schleife (2)}
+	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={{read_line-facet}, {facet_end-application}}]{cpp-code/formatted-input-read.cpp} }
+	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={{read_line-locale}, {facet-application}}]{cpp-code/formatted-input-read.cpp} }
+	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={{read_line-facet}, {facet_end-}}]{cpp-code/formatted-input-read.cpp} }
 \end{frame}
 
 \begin{frame}[fragile]{Tipps zum formatted input}
-	\footnotesize
-	
-	\begin{block}{\footnotesize Lesen bis EOF oder Fehler}
-		\vspace{-0.5em}
-		\begin{lstlisting}[basicstyle=\tiny]
-			int i; double d;
-			while(cin >> i >> d) {
-			    // do something
-			}
-		\end{lstlisting}
-		\vspace{-0.5em}
-	\end{block}
-	
-	\pause
-	
-	\begin{block}{\footnotesize Lesen bis Trennzeichen (z.B. EOL)}
-		\vspace{-0.5em}
-		\begin{lstlisting}[basicstyle=\tiny]
-			std::string target;
-			while( getline(cin, target, '\n') ) {
-			    // do something
-			}
-		\end{lstlisting}
-		\vspace{-0.5em}
-	\end{block}
-	
-	\pause
-	
 	\begin{block}{\footnotesize \enquote{Warten auf ENTER}}
 		\vspace{-0.5em}
 		\begin{lstlisting}[basicstyle=\tiny]

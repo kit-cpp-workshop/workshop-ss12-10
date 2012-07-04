@@ -154,6 +154,30 @@
 	Zugrunde liegender Puffer lässt sich zur Laufzeit austauschen (\texttt{std::basic\_ios::rdbuf}).
 \end{frame}
 
+\begin{frame}{Fehlerzustände von Streams}
+	EOF bzw. eofbit ist kein Fehlerzustand des Streams selbt, jedoch kann EOF zu einem Fehlerzustand führen (z.B. wenn extrahiert werden soll).
+	
+	\vspace{1em}
+	
+	{\tt \footnotesize
+	\begin{tabular}{rcl}
+		\textnormal{\textbf{member function}}	&	\textnormal{\textbf{returns true if}}&	\textnormal{\textbf{meaning}}\\
+		\hline
+		good()	&	rdstate() == goodbit	&	\textnormal{stream ready (for extraction/insertion)}	\\
+		fail()	&	failbit \textnormal{or} badbit \textnormal{set}	&	\textnormal{something went wrong}	\\
+		bad()	&	badbit \textnormal{set}	&	\textnormal{stream is irrecoverably \enquote{damaged}} \\
+		eof()	&	eofbit \textnormal{set}	&	\textnormal{stream is at the EOF (not ready)}	\\
+		operator bool()	&	!fail()	&	\textnormal{everything went fine (EOF still possible!)} \\
+		operator! ()	&	fail()	&	\textnormal{something went wrong} \\
+	\end{tabular}
+	}
+	
+	\pause
+	\vspace{1em}
+	
+	Merke: \texttt{fail} $\subset$ \texttt{bad}: \texttt{fail} allein kann man nicht direkt erfragen
+\end{frame}
+
 \begin{frame}{\texttt{std::basic\_streambuf}}
 	Recht komplex!
 	

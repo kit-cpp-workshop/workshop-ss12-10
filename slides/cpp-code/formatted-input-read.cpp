@@ -54,7 +54,7 @@ basic_istream < C, CT >& ws_noLF( basic_istream < C, CT >& s )
 		 && fac.is(std::ctype_base::space, c)	// c must be a white space
 		 && c != fac.widen('\n');				// c must not be '\n'
 	     c = s.peek() )							// read but not consume next character
-	{ s.get(); /* discard */ }
+	{ s.get(); }								// consume/discard next character
 	
 	return s;
 }

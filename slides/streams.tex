@@ -369,26 +369,6 @@
 		\item Was ist mit stream redirections?
 		\item folgt man strikt dem Standard, muss man sich die Finger brechen
 	\end{itemize}
-	
-	\pause
-	
-	\begin{lstlisting}[basicstyle=\scriptsize]
-		#include <limits>
-		// PITA!! NEVER EVER USE THIS!
-		
-		std::cin.clear();                             // Fehlerzustand aufheben
-		
-		#ifdef _MSC_VER
-		if( 0 < std::cin.rdbuf()->in_avail() )        // pruefe auf leeren Puffer
-		#endif
-		{
-		    std::cin.ignore(                          // leere Puffer
-		        std::numeric_limits < std::streamsize > :: max(),
-		        std::cin.widen('\n')
-		    );
-		}
-		std::cin.get();                               // Frage nach einem Zeichen
-	\end{lstlisting}
 \end{frame}
 
 

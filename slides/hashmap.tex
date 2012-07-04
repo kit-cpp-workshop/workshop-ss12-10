@@ -20,22 +20,24 @@
 \end{frame}
 
 \begin{frame}{Hashtables in C++}
- 	\begin{itemize}
- 		\item boost::intrusive::hashtable
- 		\item SGI-Extensions zur STL
- 		\item C++11: \texttt{unordered\_(multi)map} und darauf basierend: \texttt{unordered\_(multi)set}
- 	\end{itemize}
- 	
- 	\pause
- 	
- 	\begin{block}{\texttt{std::unordered\_map}}
+ 	\begin{block}{\texttt{std::unordered\_map} (ab C++11)}
 	 	\begin{itemize}
-	 		\item \texttt{insert(pair<key, value>)}
 	 		\item \texttt{find(key)}
+	 		\item \texttt{operator[key]}
+	 		\item \texttt{insert(pair<key, value>)}
 	 		\item \texttt{erase(key)}
 	 	\end{itemize}
 	 	\pause
 	 	Alles (amortisiert) in $\mathcal{O}(1)$
  	\end{block}
+ 	
+ 	\begin{itemize}
+ 		\item \texttt{unordered\_map} vs. \texttt{map}
+ 		\begin{itemize}
+ 			\item Wichtige Operationen in $\mathcal{O}(1)$ statt $\mathcal{O}(log(n))$
+ 			\item \texttt{unordered\_map} ist gut bei Einzel-Operationen
+ 			\item \texttt{map} erlaubt effiziente Bereichsoperationen (Iteratoren!)
+ 		\end{itemize}
+ 	\end{itemize}
 \end{frame}
 

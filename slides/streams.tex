@@ -299,8 +299,8 @@
 		\item pointer (als \texttt{void const*})
 		\item \texttt{std::basic\_streambuf}
 		\item \texttt{std::string} (im Header \texttt{<string>})
-		\item \texttt{char} und Abarten als globale Funktion
-		\item \alert{\texttt{char const*} und Abarten als globale Funktion, UNSAFE!}
+		\item \texttt{char} und Abarten {\tiny (globale Funktion)}
+		\item \texttt{char const*} und Abarten {\tiny (globale Funktion)}, \alert{UNSAFE!}
 	\end{itemize}
 	Gibt \texttt{basic\_istream < .... > \&} zurück, daher verketten möglich! (\texttt{std::cin >> myInt >> myString;})
 	

@@ -19,11 +19,13 @@
 \subsection{STL-Streams}
 
 \begin{frame}{Grundlegendes}
+	Ein STL-Stream
 	\begin{itemize}
-		\item STL-Streams sind hauptsächlich character-Streams
-		\item Die eigentliche Übertragungs-Funktionalität steckt im Puffer!
-		\item Dienen dem vereinfachten Zugriff auf Puffer
-		\item Zustands-behaftet z.B. für Eingabe mit fester Breite (\texttt{setw})
+		\item ist in erster Linie ein character-Streams
+		\item nutzt im Hintergrund einen Puffer (\texttt{basic\_streambuf}-Derivat)\\
+			$\leftarrow$ Der Puffer stellt die eigentliche Übertragungs-Funktionalität bereit!
+		\item dient quasi nur der vereinfachten Nutzung des Puffers
+		\item ist Zustands-behaftet z.B. für Eingabe mit fester Breite (\texttt{setw})
 	\end{itemize}
 \end{frame}
 

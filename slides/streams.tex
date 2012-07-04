@@ -354,22 +354,32 @@
 	\onslide<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={facet-}]{cpp-code/formatted-input-read.cpp} }
 \end{frame}
 
-\begin{frame}[fragile]{Tipps zum formatted input}
-	\begin{block}{\footnotesize \enquote{Warten auf ENTER}}
-		\vspace{-0.5em}
-		\begin{lstlisting}[basicstyle=\tiny]
-			// PITA!!
-			std::cin.clear();                                            // Fehlerzustand aufheben
-			if( 0 < std::cin.rdbuf()->in_avail() ) {                     // pruefe auf leeren Puffer
-			    std::cin.ignore(                                         // leere Puffer
-			        std::numeric_limits < std::streamsize > :: max(),
-			        std::cin.widen('\n')
-			    );
-			}
-			std::cin.get();                                              // Frage nach einem Zeichen
-		\end{lstlisting}
-		\vspace{-0.5em}
-	\end{block}
+\begin{frame}[fragile]{Konsole: Warten auf ENTER}
+	\begin{itemize}
+		\item C++ kennt weder eine Konsole noch die Enter-Taste	\\
+			$\implies$ es gibt keine feste Beziehung zwischen einem Input-Stream und einer Anfrage an den Benutzer nach Eingabe
+		\item folgt man strikt dem Standard, muss man sich die Finger brechen
+	\end{itemize}
+	
+	\pause
+	
+	\begin{lstlisting}[basicstyle=\scriptsize]
+		#include <limits>
+		// PITA!! NEVER EVER USE THIS!
+		
+		std::cin.clear();                             // Fehlerzustand aufheben
+		
+		#ifdef _MSC_VER
+		if( 0 < std::cin.rdbuf()->in_avail() )        // pruefe auf leeren Puffer
+		#endif
+		{
+		    std::cin.ignore(                          // leere Puffer
+		        std::numeric_limits < std::streamsize > :: max(),
+		        std::cin.widen('\n')
+		    );
+		}
+		std::cin.get();                               // Frage nach einem Zeichen
+	\end{lstlisting}
 \end{frame}
 
 

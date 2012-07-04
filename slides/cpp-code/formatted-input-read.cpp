@@ -34,12 +34,12 @@ template < class C, class CT >
 basic_istream < C, CT >& ws_noLF( basic_istream < C, CT >& s )
 {
 	std::locale const& loc = s.getloc();
-	for( C c = s.peek();
+	for( C c = s.peek();						// read but not consume next character
 	        s									// any error, or EOF?
 		 && std::isspace(c, loc)				// c must be a white space
 		 && c != s.widen('\n');					// c must not be '\n'
-	     c = s.peek() )
-	{ s.get(); /* discard */ }
+	     c = s.peek() )							// read but not consume next character
+	{ s.get(); }								// consume/discard next character
 	
 	return s;
 }

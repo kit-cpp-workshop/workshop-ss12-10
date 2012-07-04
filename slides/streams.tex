@@ -291,6 +291,44 @@
 	\end{block}
 \end{frame}
 
+\begin{frame}[fragile]{\texttt{basic\_istream}: formatted input \& errors}
+	\begin{itemize}
+		\item jede formatted-input-Funktion prüft zunächst den Fehlerzustand des Streams (\texttt{good()})
+		\item falls \texttt{!good()}: mglw. exception (je nach Konfiguration)
+		\item falls \texttt{good()}:
+			\begin{itemize}
+				\item falls \texttt{flags() \& skipws}: entferne alle white-spaces vom Beginn des Streams
+				\item falls jetzt EOF: setze \texttt{failbit | eofbit} (da noch nichts gelesen wurde)
+				\item versuche zu lesen; bei exception: setze \texttt{badbit}
+				\item lesen schlägt fehl: setze \texttt{failbit}
+			\end{itemize}
+	\end{itemize}
+	
+	\pause
+	
+	Heißt: wenn exceptions nicht explizit aktiviert, geht jeglicher formatted output \emph{lautlos} schief bis zum Aufheben des Fehlerzustandes!
+	
+	\begin{lstlisting}
+		std::cin >> make_error;
+		// angenommen, cin waere nun in einem Fehlerzustand
+		int i; int j;
+		std::cin >> i >> j;
+		// Programm kommt hier ohne Probleme an,
+		// aber i und j haben immer noch einen undefinierten Wert!
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{formatted input: lesen in Schleife}
+	\begin{block}{Schlechte Idee}
+		\begin{lstlisting}
+			while(cin) {
+				int i; int j;
+				cin >> i >> j;
+				// use i and j
+			}
+		\end{lstlisting}
+\end{frame}
+
 \begin{frame}[fragile]{Tipps zum formatted input}
 	\footnotesize
 	

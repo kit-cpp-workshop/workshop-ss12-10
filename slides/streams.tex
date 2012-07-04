@@ -220,7 +220,7 @@
 		std::cout << make_error;
 		// angenommen, cout waere nun in einem Fehlerzustand
 		std::cout << "hello world" << 5 << 42.2 << std::endl;
-		// Programm kommt hier ohne Probleme an,
+		// Programm kommt hier an (falls !std::cin.exceptions()),
 		// aber nichts wurde ausgegeben!
 	\end{lstlisting}
 \end{frame}

@@ -85,35 +85,7 @@
 	\includegraphics[width=\textwidth]{images/streams-class-hierarchy}
 \end{frame}
 
-\begin{frame}{\texttt{std::ios\_base}, Standard 27.4.2}
-	Für Anwender tendenziell uninteressant!
-	
-	Hauptsächlicher Inhalt:
-	\begin{itemize}
-		\item Formattierungs-Status (z.B. \texttt{std::ios\_base::width} $\leftarrow$ \texttt{setw})	\\
-		(üblicherweise mittels stream manipulators)
-		\item Einführung von Konstanten und Typen
-		\item private storage
-		\item callback registration
-	\end{itemize}
-	
-	\footnotesize
-	\begin{block}{Konstanten des Fehler-Zustands}
-		% hack is quicker hacked than nice things are nicely done
-		\begin{tabular}{ll}
-			\texttt{0 == std::ios\_base::goodbit}	&	kein Fehler	\\
-			\texttt{std::ios\_base::badbit}			&	\enquote{unheilbarer} Fehler	\\
-			\texttt{std::ios\_base::failbit}		&	I/O Fehler (Formattierung oder Extraktion)	\\
-			\texttt{std::ios\_base::eofbit}			&	Input hat das Dateiende erreicht (end-of-file)	\\
-		\end{tabular}
-	\end{block}
-\end{frame}
-
-\begin{frame}[fragile]{\texttt{std::basic\_ios} template}
-	Hauptaufgabe: Management eines Puffers (\texttt{basic\_streambuf*})
-	
-	\vspace{2em}
-	
+\begin{frame}[fragile]{template parameters of streams}
 	\begin{block}{Introducing: basic\_ios, Standard 27.4.4}
 		\begin{lstlisting}
 			template
@@ -133,33 +105,39 @@
 	\end{block}
 \end{frame}
 
-\begin{frame}{\texttt{std::basic\_ios} Inhalt}
+\begin{frame}{\texttt{ios\_base} und \texttt{basic\_ios}}
 	Hauptsächlicher Inhalt:
 	\begin{itemize}
+		\item Formattierungs-Status (z.B. \texttt{std::ios\_base::width} $\leftarrow$ \texttt{setw})	\\
+			(üblicherweise mittels stream manipulators)
 		\item Fehler-Zustand
-		\item \texttt{T\_Char}-abhängiger Formattierungs-Status
 		\item locale-Management
-		\item Puffer-Ownership
+		\item Puffer-Ownership; Puffer lässt sich zur Laufzeit austauschen: \texttt{basic\_ios::rdbuf}
+		\item Einführung von Konstanten und Typen
+		\item \footnotesize (private storage)
+		\item \footnotesize (callback registration)
 	\end{itemize}
-	
-	\pause
-	\vspace{2em}
-	
-	Fehler-Zustand lässt sich über diverse member functions abfragen und (zurück-)setzen.\\
-	Wichtig: \texttt{eof}, \texttt{operator!}, \texttt{operator void*}
-	
-	\pause
-	\vspace{2em}
-	
-	Zugrunde liegender Puffer lässt sich zur Laufzeit austauschen (\texttt{std::basic\_ios::rdbuf}).
 \end{frame}
 
 \begin{frame}{Fehlerzustände von Streams}
+	\footnotesize
+	\begin{block}{Konstanten des Fehler-Zustands}
+		% hack is quicker hacked than nice things are nicely done
+		\begin{tabular}{rl}
+			\texttt{0 == ios\_base::goodbit}	&	kein Fehler	\\
+			\texttt{ios\_base::badbit}			&	\enquote{unheilbarer} Fehler	\\
+			\texttt{ios\_base::failbit}		&	I/O Fehler (Formattierung oder Extraktion)	\\
+			\texttt{ios\_base::eofbit}			&	Input hat das Dateiende erreicht (end-of-file)	\\
+		\end{tabular}
+	\end{block}
+	
+	\pause
+	
 	EOF bzw. eofbit ist kein Fehlerzustand des Streams selbt, jedoch kann EOF zu einem Fehlerzustand führen (z.B. wenn extrahiert werden soll).
 	
 	\vspace{1em}
 	
-	{\tt \footnotesize
+	{\tt
 	\begin{tabular}{rcl}
 		\textnormal{\textbf{member function}}	&	\textnormal{\textbf{returns true if}}&	\textnormal{\textbf{meaning}}\\
 		\hline
@@ -181,15 +159,14 @@
 \begin{frame}{\texttt{std::basic\_streambuf}}
 	Recht komplex!
 	
-	\pause
 	\vspace{2em}
 	
 	Die ganze Funktionalität steckt in dieser abstrakten Klasse!
 	
 	Z.B.:
 	\begin{itemize}
-		\item Schreibe n character
-		\item Lese n character
+		\item Schreibe $n$ character
+		\item Lese $n$ character
 		\item \texttt{sync}, egtl. \enquote{flush} (Synchronisation mit dem Gerät)
 	\end{itemize}
 \end{frame}

@@ -49,11 +49,11 @@ template < class C, class CT >
 basic_istream < C, CT >& ws_noLF( basic_istream < C, CT >& s )
 {
 	std::ctype < C > const& fac = std::use_facet < std::ctype < C > > (loc);
-	for( C c = s.peek();
+	for( C c = s.peek();						// read but not consume next character
 	        s									// any error, or EOF?
 		 && fac.is(std::ctype_base::space, c)	// c must be a white space
 		 && c != fac.widen('\n');				// c must not be '\n'
-	     c = s.peek() )
+	     c = s.peek() )							// read but not consume next character
 	{ s.get(); /* discard */ }
 	
 	return s;
@@ -71,5 +71,5 @@ while(cin) {								// read until EOF or failure
 		{ break; }
 	}
 	//- next line
-	break;
+	break;						// normally: do something useful instead; here: parse only one line
 }

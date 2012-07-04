@@ -315,19 +315,23 @@
 \end{frame}
 
 \begin{frame}[fragile]{\texttt{basic\_istream}: formatted input \& errors}
-	\begin{itemize}
-		\item jede formatted-input-Funktion prüft zunächst den Fehlerzustand des Streams (\texttt{good()})
-		\item falls \texttt{!good()}: mglw. exception (je nach Konfiguration)
-		\item falls \texttt{good()}:
-			\begin{itemize}
-				\item falls \texttt{flags() \& skipws}: entferne alle white-spaces vom Beginn des Streams
-				\item falls jetzt EOF: setze \texttt{failbit | eofbit} (da noch nichts gelesen wurde)
-				\item versuche zu lesen; bei exception: setze \texttt{badbit}
-				\item lesen schlägt fehl: setze \texttt{failbit}
-			\end{itemize}
-	\end{itemize}
+	\begin{block}{Vorgehen jeder formatted-input-Funktion}
+		\begin{itemize}
+			\item prüfe den Fehlerzustand des Streams (\texttt{good()})
+			\item falls \texttt{!good()}: mglw. exception (je nach Konfiguration)
+			\item falls \texttt{good()}:
+				\begin{itemize}
+					\item falls \texttt{flags() \& skipws}: entferne white-spaces vom Beginn
+					\item falls jetzt EOF: setze \texttt{failbit | eofbit} (da nichts gelesen)
+					\item versuche zu lesen; bei exception: setze \texttt{badbit}
+					\item lesen schlägt fehl: setze \texttt{failbit}
+				\end{itemize}
+		\end{itemize}
+	\end{block}
 	
 	\pause
+	
+	\footnotesize
 	
 	Heißt: wenn exceptions nicht explizit aktiviert, geht jeglicher formatted output \emph{lautlos} schief bis zum Aufheben des Fehlerzustandes!
 	
@@ -336,8 +340,8 @@
 		// angenommen, cin waere nun in einem Fehlerzustand
 		int i; int j;
 		std::cin >> i >> j;
-		// Programm kommt hier ohne Probleme an,
-		// aber i und j haben immer noch einen undefinierten Wert!
+		// Programm kommt hier an (falls !std::cin.exceptions())
+		//- Wert von i und j undefiniert!
 	\end{lstlisting}
 \end{frame}
 

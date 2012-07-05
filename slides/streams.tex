@@ -178,52 +178,8 @@
 	\end{block}
 \end{frame}
 
-\begin{frame}[fragile]{\texttt{basic\_ostream}: formatted output}
-	\texttt{operator<<} standardmäßig schon definiert für:
-	\begin{itemize}
-		\item built-in data types (\texttt{short}, \texttt{int}, \texttt{bool}, \texttt{float} usw.)
-		\item pointer (als \texttt{void const*})
-		\item \texttt{std::basic\_streambuf}
-		\item \texttt{std::string} (im Header \texttt{<string>}) {\tiny (globale Funktion)}
-		\item \texttt{char}, \texttt{char const*} und Abarten {\tiny (globale Funktion)}
-	\end{itemize}
-	
-	\pause
-	\vspace{0.5em}
-	
-	\begin{block}{Verkettung von \texttt{operator<<}}
-		Gibt \texttt{basic\_ostream < .... > \&} zurück, daher verketten möglich!
-		\begin{lstlisting}
-			/* 0. */  std::cout << 5  << "hallo";
-			/* 1. */ (std::cout << 5) << "hallo";
-			/* 2. */ std::ostream& rcout = std::cout << 5;
-			         rcout << "hallo";
-		\end{lstlisting}
-	\end{block}
-\end{frame}
 
-\begin{frame}[fragile]{\texttt{basic\_ostream}: formatted output \& errors}
-	\begin{itemize}
-		\item jede formatted-ouput-Funktion prüft zunächst den Fehlerzustand des Streams (\texttt{good()})
-		\begin{itemize}
-			\item falls \texttt{!good()}: setze \texttt{failbit}
-			\item falls \texttt{good()}: führe den output durch
-		\end{itemize}
-	\end{itemize}
-	
-	\pause
-	\vspace{2em}
-	
-	Heißt: wenn exceptions nicht explizit aktiviert, geht jeglicher formatted output \emph{lautlos} schief bis zum Aufheben des Fehlerzustandes!
-	
-	\begin{lstlisting}
-		std::cout << make_error;
-		// angenommen, cout waere nun in einem Fehlerzustand
-		std::cout << "hello world" << 5 << 42.2 << std::endl;
-		// Programm kommt hier an (falls !std::cin.exceptions()),
-		// aber nichts wurde ausgegeben!
-	\end{lstlisting}
-\end{frame}
+\subsection{stream manipulators}
 
 \begin{frame}{stream manipulators}
 	Schon bekannt:
@@ -277,6 +233,56 @@
 \end{frame}
 
 
+\subsection{formatted output}
+
+\begin{frame}[fragile]{\texttt{basic\_ostream}: formatted output}
+	\texttt{operator<<} standardmäßig schon definiert für:
+	\begin{itemize}
+		\item built-in data types (\texttt{short}, \texttt{int}, \texttt{bool}, \texttt{float} usw.)
+		\item pointer (als \texttt{void const*})
+		\item \texttt{std::basic\_streambuf}
+		\item \texttt{std::string} (im Header \texttt{<string>}) {\tiny (globale Funktion)}
+		\item \texttt{char}, \texttt{char const*} und Abarten {\tiny (globale Funktion)}
+	\end{itemize}
+	
+	\pause
+	\vspace{0.5em}
+	
+	\begin{block}{Verkettung von \texttt{operator<<}}
+		Gibt \texttt{basic\_ostream < .... > \&} zurück, daher verketten möglich!
+		\begin{lstlisting}
+			/* 0. */  std::cout << 5  << "hallo";
+			/* 1. */ (std::cout << 5) << "hallo";
+			/* 2. */ std::ostream& rcout = std::cout << 5;
+			         rcout << "hallo";
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{basic\_ostream}: formatted output \& errors}
+	\begin{itemize}
+		\item jede formatted-ouput-Funktion prüft zunächst den Fehlerzustand des Streams (\texttt{good()})
+		\begin{itemize}
+			\item falls \texttt{!good()}: setze \texttt{failbit}
+			\item falls \texttt{good()}: führe den output durch
+		\end{itemize}
+	\end{itemize}
+	
+	\pause
+	\vspace{2em}
+	
+	Heißt: wenn exceptions nicht explizit aktiviert, geht jeglicher formatted output \emph{lautlos} schief bis zum Aufheben des Fehlerzustandes!
+	
+	\begin{lstlisting}
+		std::cout << make_error;
+		// angenommen, cout waere nun in einem Fehlerzustand
+		std::cout << "hello world" << 5 << 42.2 << std::endl;
+		// Programm kommt hier an (falls !std::cin.exceptions()),
+		// aber nichts wurde ausgegeben!
+	\end{lstlisting}
+\end{frame}
+
+
 \subsection{input stream}
 
 \begin{frame}{\texttt{basic\_istream} template}
@@ -309,6 +315,9 @@
 		\verb|` '|, \verb|`\t'|, \verb|`\n'|, \verb|`\v'|, \verb|`\f'|, \verb|`\r'|
 	\end{block}
 \end{frame}
+
+
+\subsection{formatted input}
 
 \begin{frame}[fragile]{\texttt{basic\_istream}: formatted input \& errors}
 	\begin{block}{Vorgehen jeder formatted-input-Funktion}

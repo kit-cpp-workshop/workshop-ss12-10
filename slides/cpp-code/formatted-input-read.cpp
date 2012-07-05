@@ -79,8 +79,8 @@ void input( basic_istream < C, CT >& in ) {
 	/*$locale_magic$*/locale oldLoc = in.getloc();
 	/*$locale_magic$*/ctype_noLF<C>* pMyFac = new ctype_noLF<C>( use_facet< ctype<C> >(oldLoc) );
 	/*$locale_magic$*/in.imbue( locale{oldLoc, pMyFac} );
-
-	typename CT::int_type const LF = CT::to_int_type( pMyFac->widen('\n') );	// get LF character
+	/*$locale_magic$*/typename CT::int_type const LF = CT::to_int_type( pMyFac->widen('\n') );	// get LF character
+	
 	in >> skipws;												// (is by default)
 	vector < int > v;
 	while(in) {													// read until an extraction failed

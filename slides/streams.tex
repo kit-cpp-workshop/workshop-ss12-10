@@ -284,7 +284,7 @@
 	\end{lstlisting}
 \end{frame}
 
-\begin{frame}[t]{formatted input: lesen in Schleife (1)}
+\begin{frame}[t]{formatted input: lesen in Schleife}
 	\begin{columns}[t]
 		\hspace{2em}
 		\column{0.5\textwidth}
@@ -296,25 +296,6 @@
 			\onslide*<+> { \lstinputlisting[linerange=good_idea1-good_idea2]{cpp-code/formatted-input-read.cpp} }
 			\onslide<+-> { \lstinputlisting[linerange=good_idea1-read_line]{cpp-code/formatted-input-read.cpp} }
 	\end{columns}
-\end{frame}
-
-\begin{frame}[t]{formatted input: lesen in Schleife (2)}
-	\vspace{-1em}
-	
-	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={read_line-iomanip_begin}]{cpp-code/formatted-input-read.cpp} }
-	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={read_line-iomanip_impl}]{cpp-code/formatted-input-read.cpp} }
-	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={read_line-read_line_end}]{cpp-code/formatted-input-read.cpp} }
-\end{frame}
-
-\begin{frame}[t]{formatted input: lesen in Schleife (3)}
-	\vspace{-1em}
-	
-	\onslide*<+> {
-		\lstset{morecomment=[l][\invisible]/*\$locale_magic}
-		\lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={locale_magin_begin-locale_magin_end}]{cpp-code/formatted-input-read.cpp}
-		\lstset{deletecomment=[l][\invisible]/*\$locale_magic}
-	}
-	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={locale_magin_begin-locale_magin_end}]{cpp-code/formatted-input-read.cpp} }
 \end{frame}
 
 \begin{frame}[fragile]{Konsole: Warten auf ENTER}

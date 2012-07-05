@@ -35,7 +35,7 @@ basic_istream < C, CT >& ws_noLF( basic_istream < C, CT >& s )
 {
 	std::locale const& loc = s.getloc();
 	for( C c = s.peek();						// read but not consume next character
-	        s									// any error, or EOF?
+	        s									// anything went wrong?
 		 && std::isspace(c, loc)				// c must be a white space
 		 && c != s.widen('\n');					// c must not be '\n'
 	     c = s.peek() )							// read but not consume next character
@@ -50,7 +50,7 @@ basic_istream < C, CT >& ws_noLF( basic_istream < C, CT >& s )
 {
 	std::ctype < C > const& fac = std::use_facet < std::ctype < C > > (loc);
 	for( C c = s.peek();						// read but not consume next character
-	        s									// any error, or EOF?
+	        s									// anything went wrong?
 		 && fac.is(std::ctype_base::space, c)	// c must be a white space
 		 && c != fac.widen('\n');				// c must not be '\n'
 	     c = s.peek() )							// read but not consume next character

@@ -37,7 +37,7 @@ std::vector<int> liste = {1, 42, 83, 7, 12};
 int c_liste[] = {1, 42, 83, 12, 7};
 std::sort(std::begin(liste), std::end(liste));
 std::sort(std::begin(c_liste), std::end(c_liste));
-if(std::equal(liste.begin(), liste.end(), c_liste)) {
+if(std::equal(std::begin(liste), std::end(liste), std::begin(c_liste))) {
 	std::cout << "liste == c_liste" << std::endl;
 } else {
 	std::cout << "liste != c_liste" << std::endl;

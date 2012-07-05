@@ -49,12 +49,12 @@
 	\vspace{0.5em}
 	
 	\begin{block}{Locale}
-		Beschreibt Regions-spezifische Aspekte des UI, z.B.
+		Beschreibt in Facetten Regions-spezifische Aspekte des UI, z.B.
 		\begin{itemize}
-			\item Zahlenformatierung
-			\item Minuskel/Majuskel-Konversion
-			\item Währung
-			\item lexikographische Sortierung
+			\item Zahlenformatierung (facets: \texttt{num\_get}, \texttt{num\_put})
+			\item Minuskel/Majuskel-Konversion (facet: \texttt{ctype})
+			\item Datum/Zeit (facets: \texttt{time\_get}, \texttt{time\_put}, \dots)
+			\item lexikographische Sortierung (facets: \texttt{collate}, \texttt{collate\_byname})
 			\item \dots
 		\end{itemize}
 	\end{block}

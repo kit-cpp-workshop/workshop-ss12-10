@@ -159,7 +159,7 @@
 \end{frame}
 
 
-\subsection{ostream}
+\subsection{output stream}
 
 \begin{frame}{\texttt{basic\_ostream} template}
 	Hauptsächlicher Inhalt:
@@ -206,8 +206,8 @@
 	\begin{itemize}
 		\item jede formatted-ouput-Funktion prüft zunächst den Fehlerzustand des Streams (\texttt{good()})
 		\begin{itemize}
+			\item falls \texttt{!good()}: setze \texttt{failbit}
 			\item falls \texttt{good()}: führe den output durch
-			\item falls nicht: mglw. exception (je nach Konfiguration)
 		\end{itemize}
 	\end{itemize}
 	
@@ -277,7 +277,7 @@
 \end{frame}
 
 
-\subsection{istream}
+\subsection{input stream}
 
 \begin{frame}{\texttt{basic\_istream} template}
 	Hauptsächlicher Inhalt:
@@ -314,7 +314,7 @@
 	\begin{block}{Vorgehen jeder formatted-input-Funktion}
 		\begin{itemize}
 			\item prüfe den Fehlerzustand des Streams (\texttt{good()})
-			\item falls \texttt{!good()}: mglw. exception (je nach Konfiguration)
+			\item falls \texttt{!good()}: setze \texttt{failbit}
 			\item falls \texttt{good()}:
 				\begin{itemize}
 					\item falls \texttt{flags() \& skipws}: entferne white-spaces vom Beginn

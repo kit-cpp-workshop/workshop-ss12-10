@@ -139,8 +139,8 @@ try{
 	sock = new Socket(99);
 } catch(PortIsAlreadyUsed) {
 	std::cout << "port already in use" << std::endl;
-} catch(...) {
-	std::cout << "an unkown error has ocurred" << std::endl;
+} catch(const std::exception &e) {
+	std::cout << "an unkown error has ocurred: " << e.what() << std::endl;
 }
 	\end{lstlisting}
 

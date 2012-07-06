@@ -35,19 +35,22 @@
 	\begin{lstlisting}[escapechar=\$]
 std::vector<int> liste = {1, 42, 83, 7, 12};
 int c_liste[] = {1, 42, 83, 12, 7};
+
 std::sort(std::begin(liste), std::end(liste));
 std::sort(std::begin(c_liste), std::end(c_liste));
+
 if(std::equal(std::begin(liste), std::end(liste), std::begin(c_liste))) {
-	std::cout << "liste == c_liste" << std::endl;
+    std::cout << "liste == c_liste" << std::endl;
 } else {
-	std::cout << "liste != c_liste" << std::endl;
+    std::cout << "liste != c_liste" << std::endl;
 }
+
 std::vector<int>::iterator it = std::find(std::begin(liste), std::end(liste), 3);
 
 if(it == std::end(liste)) {
-	std::cout << "zahl nicht gefunden" << std::endl;
+    std::cout << "zahl nicht gefunden" << std::endl;
 } else {
-	*it = 99;
+    *it = 99;
 }
 	\end{lstlisting}
 	

@@ -123,25 +123,25 @@ ErrCode openSocket(Sock* sock, uint16_t port)
 class Socket
 {
 private:
-	SomePortInfo * info;
+    SomePortInfo * info;
 public:
-	Socket(uint16_t port)
-	{
-		if(portAlreadyOpen(port)) throw PortIsAlreadyUsed();
-		if(thereIsNoSpoon()) throw YouAreInTheMatrix();
-		info = new SomePortInfo(port);
-	}
+    Socket(uint16_t port)
+    {
+        if(portAlreadyOpen(port)) throw PortIsAlreadyUsed();
+        if(thereIsNoSpoon()) throw YouAreInTheMatrix();
+        info = new SomePortInfo(port);
+    }
 };
 
 Socket * sock = nullptr;
 
 try{
-	sock = new Socket(99);
+    sock = new Socket(99);
 } catch(const PortIsAlreadyUsed &) {
-	std::cout << "port already in use" << std::endl;
+    std::cout << "port already in use" << std::endl;
 } catch(const std::exception &e) {
-	std::cout << "an unkown error has ocurred: " << e.what() << std::endl;
+    std::cout << "an unkown error has ocurred: " << e.what() << std::endl;
 }
-	\end{lstlisting}
+    \end{lstlisting}
 
 \end{frame}

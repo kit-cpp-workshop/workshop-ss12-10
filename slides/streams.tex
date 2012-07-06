@@ -1,7 +1,7 @@
 \section{Streams}
 
 
-\subsection{Konzept}
+\subsection{Grundlegendes}
 
 \begin{frame}{Datenfluss}
 	\begin{itemize}
@@ -15,9 +15,6 @@
 	\end{itemize}
 \end{frame}
 
-
-\subsection{STL-Streams}
-
 \begin{frame}{Grundlegendes}
 	Ein STL-Stream
 	\begin{itemize}
@@ -29,8 +26,6 @@
 	\end{itemize}
 \end{frame}
 
-
-\subsection{locales}
 
 \begin{frame}{Locales}
 	Unterschiedliche Konventionen in verschiedenen Ländern:
@@ -49,12 +44,12 @@
 	\vspace{0.5em}
 	
 	\begin{block}{Locale}
-		Beschreibt Regions-spezifische Aspekte des UI, z.B.
+		Beschreibt in Facetten Regions-spezifische Aspekte des UI, z.B.
 		\begin{itemize}
-			\item Zahlenformatierung
-			\item Minuskel/Majuskel-Konversion
-			\item Währung
-			\item lexikographische Sortierung
+			\item Zahlenformatierung (facets: \texttt{num\_get}, \texttt{num\_put})
+			\item Minuskel/Majuskel-Konversion (facet: \texttt{ctype})
+			\item Datum/Zeit (facets: \texttt{time\_get}, \texttt{time\_put}, \dots)
+			\item lexikographische Sortierung (facets: \texttt{collate}, \texttt{collate\_byname})
 			\item \dots
 		\end{itemize}
 	\end{block}
@@ -80,8 +75,6 @@
 	Meist aber indirekte Verwendung, z.B. über Streams.
 \end{frame}
 
-
-\subsection{base classes}
 
 \begin{frame}{class hierarchy}
 	\includegraphics[width=\textwidth]{images/streams-class-hierarchy}
@@ -225,57 +218,6 @@
 	\end{lstlisting}
 \end{frame}
 
-\begin{frame}{stream manipulators}
-	Schon bekannt:
-	\begin{itemize}
-		\item \texttt{std::endl}, \texttt{std::flush}
-		\item \texttt{std::setw}, \texttt{std::setprecision}
-	\end{itemize}
-	
-	\vspace{1em}
-	
-	Finden sich in \texttt{<ios>}, \texttt{<ostream>} bzw. \texttt{<istream>} und in \texttt{<iomanip>}!
-	
-	\vspace{1em}
-	
-	Weitere Beispiele:
-	\begin{itemize}
-		\item \texttt{std::scientific} (floating-point IO)
-		\item \texttt{std::setfill}
-		\item \texttt{std::ws}, \texttt{std::skipws}, \texttt{std::noskipws}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{stream manips: Funktionsweise}
-	\footnotesize
-	die Manipulatoren
-	\begin{itemize}
-		\item beschreiben Funktionen (sind Funktionen $\implies$ function ptrs)
-		\item werden mit \texttt{operator<<} bzw. \texttt{operator>>} an den Stream \enquote{übergeben}
-		\item der Stream ruft die Funktion auf und übergibt sich selbst als Parameter
-		\item die Manipulator-Funktion arbeitet auf dem Stream
-	\end{itemize}
-	
-	\pause
-	
-	\begin{block}{Erläuterndes Beispiel}
-		\begin{lstlisting}[basicstyle=\tiny, xleftmargin=3em]
-			std::ostream& endl( std::ostream& p ) {
-			    p.put( p.widen('\n') );
-			    p.flush();
-			    return p;
-			}
-			
-			std::ostream& operator<< (std::ostream& p, Manipulator m) {
-			    m(p);
-			    return p;
-			}
-			
-			std::cout << endl;
-		\end{lstlisting}
-	\end{block}
-\end{frame}
-
 
 \subsection{input stream}
 
@@ -310,6 +252,7 @@
 	\end{block}
 \end{frame}
 
+
 \begin{frame}[fragile]{\texttt{basic\_istream}: formatted input \& errors}
 	\begin{block}{Vorgehen jeder formatted-input-Funktion}
 		\begin{itemize}
@@ -341,7 +284,7 @@
 	\end{lstlisting}
 \end{frame}
 
-\begin{frame}[t]{formatted input: lesen in Schleife (1)}
+\begin{frame}[t]{formatted input: lesen in Schleife}
 	\begin{columns}[t]
 		\hspace{2em}
 		\column{0.5\textwidth}
@@ -355,12 +298,6 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}[t]{formatted input: lesen in Schleife (2)}
-	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={read_line-locale_end}]{cpp-code/formatted-input-read.cpp} }
-	\onslide*<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={facet-facet_end}]{cpp-code/formatted-input-read.cpp} }
-	\onslide<+> { \lstinputlisting[firstnumber=0, basicstyle=\tiny, linerange={facet-}]{cpp-code/formatted-input-read.cpp} }
-\end{frame}
-
 \begin{frame}[fragile]{Konsole: Warten auf ENTER}
 	\footnotesize
 	\begin{itemize}
@@ -370,6 +307,60 @@
 		\item es gibt afaik keine robuste portable Variante
 		\item nutze libs ($\implies$ platform-dependent calls), z.B. ncurses
 	\end{itemize}
+\end{frame}
+
+
+\subsection{stream manipulators}
+
+\begin{frame}{stream manipulators}
+	Schon bekannt:
+	\begin{itemize}
+		\item \texttt{std::endl}, \texttt{std::flush}
+		\item \texttt{std::setw}, \texttt{std::setprecision}
+	\end{itemize}
+	
+	\vspace{1em}
+	
+	Finden sich in \texttt{<ios>}, \texttt{<ostream>} bzw. \texttt{<istream>} und in \texttt{<iomanip>}!
+	
+	\vspace{1em}
+	
+	Weitere Beispiele:
+	\begin{itemize}
+		\item \texttt{std::scientific} (floating-point IO)
+		\item \texttt{std::setfill}, \texttt{std::left}, \texttt{std::right}
+		\item \texttt{std::ws}, \texttt{std::skipws}, \texttt{std::noskipws}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{stream manips: Funktionsweise}
+	\footnotesize
+	die Manipulatoren
+	\begin{itemize}
+		\item beschreiben Funktionen (sind Funktionen $\implies$ function ptrs)
+		\item werden mit \texttt{operator<<} bzw. \texttt{operator>>} an den Stream \enquote{übergeben}
+		\item der Stream ruft die Funktion auf und übergibt sich selbst als Parameter
+		\item die Manipulator-Funktion arbeitet auf dem Stream
+	\end{itemize}
+	
+	\pause
+	
+	\begin{block}{Erläuterndes Beispiel}
+		\begin{lstlisting}[basicstyle=\tiny, xleftmargin=3em]
+			std::ostream& endl( std::ostream& p ) {
+			    p.put( p.widen('\n') );			// insert a new-line char
+			    p.flush();
+			    return p;
+			}
+			
+			std::ostream& operator<< (std::ostream& p, Manipulator m) {
+			    m(p);							// apply manipulator function
+			    return p;
+			}
+			
+			std::cout << endl;
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 
@@ -423,8 +414,6 @@
 \end{frame}
 
 
-\subsection{Aliase}
-
 \begin{frame}{Aliase für streams}
 	\texttt{using alias = name < T\_Char, T\_CharTraits >;}
 	
@@ -445,9 +434,6 @@
 	
 	usw.
 \end{frame}
-
-
-\subsection{Standard-Streams}
 
 \begin{frame}{Standard-Streams: Wohin gehen diese?}
 	\begin{itemize}

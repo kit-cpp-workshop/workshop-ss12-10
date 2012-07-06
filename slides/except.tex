@@ -116,3 +116,32 @@ ErrCode openSocket(Sock* sock, uint16_t port)
 	\end{lstlisting}
 
 \end{frame}
+
+
+\begin{frame}[fragile]{Konstruktor schlägt fehl}
+	\begin{lstlisting}[]
+class Socket
+{
+private:
+	SomePortInfo * info;
+public:
+	Socket(uint16_t port) throw(PortIsAlreadyUsed, YouAreInTheMatrix)
+	{
+		if(portAlreadyOpen(port)) throw PortIsAlreadyUsed();
+		if(thereIsNoSpoon()) throw YouAreInTheMatrix();
+		info = new SomePortInfo(port);
+	}
+};
+
+Socket * sock = nullptr;
+
+try{
+	sock = new Socket(99);
+} catch(PortIsAlreadyUsed) {
+	std::cout << "port already in use" << std::endl;
+} catch(...) {
+	std::cout << "an unkown error has ocurred" << std::endl;
+}
+	\end{lstlisting}
+
+\end{frame}

@@ -125,7 +125,7 @@ class Socket
 private:
 	SomePortInfo * info;
 public:
-	Socket(uint16_t port) throw(PortIsAlreadyUsed, YouAreInTheMatrix)
+	Socket(uint16_t port)
 	{
 		if(portAlreadyOpen(port)) throw PortIsAlreadyUsed();
 		if(thereIsNoSpoon()) throw YouAreInTheMatrix();

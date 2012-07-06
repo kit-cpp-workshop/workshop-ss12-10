@@ -1,0 +1,114 @@
+\section{Exceptions}
+
+
+\subsection{Konzept}
+
+\begin{frame}{Konzept}
+	\begin{itemize}
+		\item Ersetzen viele Fehlercodes bei Funktionen (nicht alle)
+		\item In zeitkritischen Bereichen nur in Ausnahmefällen
+		\item In nicht zeitkritischen Bereichen oefter nutzbar
+		\item Setzen "sauberen" C++ code vorraus
+		\item Inkorrekte Nutzung kann sehr viel Overhead verursachen
+	\end{itemize}
+\end{frame}
+
+\subsection{Was ist eine Exception}
+
+\begin{frame}[fragile]{Typ}
+
+Jede Exception sollte eine eigene Klasse sein, die von std::exception (oder einer ihrer Unterklassen) erbt
+
+	\begin{lstlisting}[]
+#include <exception>
+
+class ATinyKittenDied : std::runtime_error
+{
+public:
+	ATinyKittenDied()
+	:std::runtime_error("Armes Kaetzchen")
+	{}
+};
+	\end{lstlisting}
+\end{frame}
+
+\subsection{Wie werfe ich eine Exception}
+
+\begin{frame}[fragile]{So gehts (nicht richtig)}
+	\begin{lstlisting}[]
+int groesserNull = -32;
+if(groesserNull <= 0) {
+	throw ATinyKittenDied();
+}
+	\end{lstlisting}
+
+Name der Exception hat nix mit dem Fehler zu tun, beheben wir das
+
+\end{frame}
+\begin{frame}[fragile]{So gehts richtig}
+	\begin{lstlisting}[]
+#include <exception>
+
+class ZahlIstNichtGroesserNull : std::runtime_error
+{
+public:
+	ZahlIstNichtGroesserNull()
+	:std::runtime_error("Die Zahl muss groesser Null sein")
+	{}
+};
+
+void testeZahl(int groesserNull)
+{
+	if(groesserNull <= 0) {
+		throw ZahlIstNichtGroesserNull();
+	}
+	// ... do something
+}
+	\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Hier ist eine exception unpraktisch}
+	\begin{lstlisting}[]
+#include <exception>
+
+class KeineNeueDaten : std::runtime_error
+{
+public:
+	KeineNeueDaten()
+	:std::runtime_error("Es liegen keine neue Daten an")
+	{}
+};
+
+struct Daten{};
+
+Daten getDataFromTCPSocket()
+{
+	if(datenMenge == 0) throw KeineNeueDaten();
+	return neueDaten;
+}
+	\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Hier ist eine exception nützlich}
+	\begin{lstlisting}[]
+Socket openSocket(uint16_t port)
+{
+	if(portAlreadyOpen(port)) throw PortIsAlreadyUsed();
+	if(thereIsNoSpoon()) throw YouAreInTheMatrix();
+	return Socket(port);
+}
+
+ErrCode openSocket(Sock* sock, uint16_t port)
+{
+	if(!sock) return ERR_SOCK_IS_NULL;
+	if(portAlreadyOpen(port)) return ERR_PORT_IN_USE;
+	if(thereIsNoSpoon()) return ERR_MATRIX_HAS_YOU;
+	sock->port = port;
+	sock->stream = newStream(port);
+	return SUCCESS;
+}
+	\end{lstlisting}
+
+\end{frame}

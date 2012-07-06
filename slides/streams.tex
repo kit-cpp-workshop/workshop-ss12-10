@@ -224,14 +224,14 @@
 \begin{frame}{\texttt{basic\_istream} template}
 	Hauptsächlicher Inhalt:
 	\begin{itemize}
-		\item formatted input, stream manipulator \enquote{interface}: \texttt{operator<<}
+		\item formatted input, stream manipulator \enquote{interface}: \texttt{operator>>}
 		\item unformatted input
 		\item \texttt{sentry}-Klasse
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{\texttt{basic\_istream}: formatted input}
-	\texttt{operator<<} standardmäßig schon definiert für:
+	\texttt{operator>>} standardmäßig schon definiert für:
 	\begin{itemize}
 		\item built-in data types (\texttt{short}, \texttt{int}, \texttt{bool}, \texttt{float} usw.)
 		\item pointer (als \texttt{void const*})
@@ -299,7 +299,6 @@
 \end{frame}
 
 \begin{frame}[fragile]{Konsole: Warten auf ENTER}
-	\footnotesize
 	\begin{itemize}
 		\item C++ kennt weder eine Konsole noch die Enter-Taste	\\
 			$\implies$ keine feste Beziehung zwischen z.B. \texttt{cin} und Anfrage nach Eingabe

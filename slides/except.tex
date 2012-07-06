@@ -119,7 +119,7 @@ ErrCode openSocket(Sock* sock, uint16_t port)
 
 
 \begin{frame}[fragile]{Konstruktor schlägt fehl}
-	\begin{lstlisting}[]
+	\begin{lstlisting}[basicstyle=\tiny]
 class Socket
 {
 private:
@@ -133,13 +133,16 @@ public:
     }
 };
 
+
 Socket * sock = nullptr;
 
 try{
     sock = new Socket(99);
-} catch(const PortIsAlreadyUsed &) {
+}
+catch(const PortIsAlreadyUsed &) {
     std::cout << "port already in use" << std::endl;
-} catch(const std::exception &e) {
+}
+catch(const std::exception &e) {
     std::cout << "an unkown error has ocurred: " << e.what() << std::endl;
 }
     \end{lstlisting}

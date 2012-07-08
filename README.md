@@ -4,7 +4,7 @@
 
  * Streams
  * Exceptions
- * std::algorithms
+ * `std::algorithms`
  * Hashtables
 
 ### Folien zum Vortrag
@@ -13,7 +13,14 @@ Die Vortragsfolien stehen als [PDF](https://github.com/downloads/kit-cpp-worksho
 
 ### Screencast
 
-Ein Screencast des Vortrags wird nach dem Workshop an dieser Stelle verlinkt.
+Ein Screencast des Vortrags steht zum [Download](http://ubuntuone.com/2h6Cjm5Ttf0Ook6OKSH9Rb) bereit.
+
+ * ab 00:00 Intro
+ * ab 00:30 `std::algorithms`
+ * ab 07:26 Exceptions
+ * ab 20:03 Streams
+ * ab 42:55 Hashtables
+ * ab 47:10 (Keine) Vorstellung der Praxisaufgaben
 
 ## Aufgaben
 

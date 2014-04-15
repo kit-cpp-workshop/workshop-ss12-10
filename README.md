@@ -13,7 +13,7 @@ Die Vortragsfolien stehen als [PDF](kit-cpp-workshop.github.com/raw/downloads/wo
 
 ### Screencast
 
-Ein Screencast des Vortrags steht zum [Download](http://ubuntuone.com/2h6Cjm5Ttf0Ook6OKSH9Rb) bereit.
+Ein Screencast des Vortrags steht zum [Download](https://drive.google.com/file/d/0B18AwdjM48imXzZqZ0t5bFZDNmM/edit?usp=sharing) bereit.
 
  * ab 00:00 Intro
  * ab 00:30 `std::algorithms`
